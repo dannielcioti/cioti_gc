@@ -1,0 +1,28 @@
+      .button {
+                        background-color: #020e01;
+                        border: rgb(251, 236, 27);
+                        color: rgb(244, 19, 19);
+                        padding: 20px 34px;
+                        border: 1px solid black;
+                        border-radius: 4px;
+                        text-align: center;
+                        display: inline-block;
+                        font-size: 20px;
+                        margin: 2px 2px;
+                        cursor: pointer;
+                        width: 8cm;                     
+              }
+      .button2 {
+                        background-color: #1c87c9;
+                        border: black;
+                        color: white;
+                        border: 1px solid black;
+                        border-radius: 4px;
+                        text-align:center;
+                        font-size: 20px;
+                        cursor: pointer;
+                        width: 8cm;
+                        height: 1.1cm;
+                        display: inline-block;
+                        padding-top: 10px;
+                }
