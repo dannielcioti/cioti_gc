@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="estilo.css" />  -->
+    <link type="text/css" href="estilo.css" rel="stylesheet" />
+    
+    <!-- Comando para adicionar icone na pagina, na aba do navegador-->
+    <!-- <link rel="shorcut icon" href="http://www.betoni.com.br/dbetoni/Android/imagens/favicon.ico" type="image/x-icon" /> -->
+  </head>
+<body>
+
+<h1>Test</h1>
+<p>Test.</p>
+<br><br>
+    <a href="https://sites.google.com/view/dannielcioti/p%C3%A1gina-inicial"  class="button2">VOLTAR</a></p>
+    <hr>
+    <!-- Co-Browser -->
+    <h1>Teste simples com Voz e Co-Browse</h1>
+    <button type="button" id="start-cobrowse" onclick="genesysWebchat.startCobrowse()">Entre com a Chave para o Co-browse</button>
+    <hr>
+
+    <!-- Codigo Co-Browser -->
+                  <!-- Div with this id required to display security key form -->
+                  <div id="cobrowse-security-form"></div>
+
+                  <!-- Co-browse with voice uses the webchat API, so include it here -->
+                  <script src="https://apps.mypurecloud.com/webchat/jsapi-v1.js" type="text/javascript"></script>
+
+                  <!-- For co-browse with voice, you must load the co-browse API. Co-browse with web chat loads the co-browse API for you. -->
+                  <script src="https://cobrowse.mypurecloud.com/cobrowse-jsapi-v1.js?deploymentKey=fF4qHG6BsMZqx7n4RlI9EYXMS2K0ueod" type="text/javascript"></script>
+
+                  <script type="text/javascript">
+                  let genesysWebchat = (function() {
+                      function createCobrowseConfig(){
+
+                          return {
+                              // Web chat application URL. Use the correct top-level domain for your Genesys Cloud region, i.e. apps.mypurecloud.ie, apps.mypurecloud.jp, apps.mypurecloud.co.uk.
+                              "webchatAppUrl": "https://apps.mypurecloud.com/webchat",
+
+                              // Web chat service URL
+                              "webchatServiceUrl": "https://realtime.mypurecloud.com:443",
+
+                              // Numeric organization ID
+                              "orgId": 30907,
+
+                              // OrgGuid. Needed for co-browse with voice.
+                              "orgGuid": "c8bb9493-2b8c-415a-b7b1-44cef16960f8",
+
+                              // Organization name
+                              "orgName": "latamps",
+
+                              // Log level
+                              "logLevel": "DEBUG",
+                              
+                              // Locale code
+                              "locale": "en",
+
+                              // CSS class applied to the security key window, but not its contents
+                              "cssClass": "webchat-frame",
+
+                              // Custom style applied to the security key window, but not its contents
+                              "css": {
+                                  "width": "100%",
+                                  "height": "100%"
+                              },
+
+                              // Optional CSS for styling security key form
+                              //"contentCssUrl": "http://example.com/style.css" ou "https://github.com/leo-con/chat/blob/master/cobr.css",
+                              "contentCssUrl": "https://dannielcioti.github.io/cioti_gc/estilo.css",
+
+                              // Element id where the security key form will appear.
+                              "containerEl": "cobrowse-security-form",
+
+                              // Set to true to display security key form. Do not include for co-browse with web chat or for PureConnect co-browse with voice.
+                              "promptForSecurityKey": true
+                          };
+                      }
+                      return {
+                          startCobrowse: function() {
+                              let config = createCobrowseConfig();
+
+                              // Can also use callback
+                              ININ.cobrowse.create(config)
+                                  .then(function(result) {
+                                      // Handle success
+                                  })
+                                  .catch(function(err) {
+                                      // Handle failure
+                                  });
+                          }
+                      }
+                  })();
+                  </script>
+    <!-- Codigo Co-Browser -->
+
+    <!--<a href="http://www.betoni.com.br/index2.html" class="button">CV Betoni</a></p> -->
+
+    <button onclick="Genesys('command', 'Messenger.open')" class="button">Web Messaging Cioti</button></p>
+    <button onclick="Genesys('command', 'Messenger.close')" class="button">Web Messaging Close</button></p>
+
+      <!-- SÃ³ atualiza o log de console, para quando visualizr no f12, Ferramentas de desenvolvedor e verficar por lÃ¡ que foi acionado -->
+    <button onclick="genesys('subscribe', 'Journey.ready', function()
+        {
+          console.log('DB - subscribe: Journey.ready ');}
+                            )" class="button">Journey.ready</button></p>
+
+        
+
+    <!-- O Pageview, adiciona o Browsing , a Pagina corrente do usuÃ¡rio  
+    <button onclick="Genesys('command', 'Journey.pageview', {
+                      pageTitle: 'CustomPage_1',
+                      pageLocation: 'custom-page-location',
+                      customAttributes: { visitorPreferredLang: 'en' },
+                      traitsMapper: []
+                      })" class="button">Journey.pageview
+    </button></p>
+  -->
+    <button onclick="genesys('command', 'Journey.record', 
+                                                        { 
+                                                          eventName: 'Page1',
+                                                        })" class="button">Journey.record 
+    </button></p>
+    <!-- O Journey.record, apenas grava um evento do website que Ã© customizado, exemplo , quando um  item Ã© adicionado no carrinho
+  -->
+
+  <button onclick="genesys('command', 'Journey.record', 
+                                                        { 
+                                                           eventName: 'product_added'
+                                                        })" class="button">Buy Product 
+    </button></p>
+<button onclick="genesys('command', 'Journey.pageview', 
+      {
+        pageTitle: 'CustomPage_1',
+        pageLocation: 'custom-page-location',
+        pageLocation: location.href,
+        customAttributes: 
+          {
+              Nome: 'DB',
+              Sobrenome: 'DBetoni',
+              Empresa: 'Nacional',
+              NIT: '123456789-1',
+              Profissao:'Engineer',
+              Email:'DB@genesys.com',
+              Fone:'1199999999'
+          },
+        traitsMapper:[
+                        {
+                        'fieldName': 'Nome',
+                        'traitName': 'givenName'
+                        },
+                        {
+                        'fieldName': 'Profissao',
+                        'traitName': 'jobTitle'
+                        },
+                        {
+                        'fieldName': 'Fone',
+                        'traitName': 'homePhone'
+                        },
+                        {
+                        'fieldName': 'Email',
+                        'traitName': 'email'
+                        },
+                        {
+                        'fieldname': 'Sobrenome',
+                        'traitName': 'familyName'
+                        }
+                     ]
+        }
+                        )" class="button">Journey.pageview</button></p>
+</body>
+</html>
